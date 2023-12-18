@@ -330,6 +330,12 @@
     <script src="/assets/extensions/jquery/jquery.min.js"></script>
 
     <script>
+        if(localStorage.getItem('theme') == 'dark'){
+            localStorage.setItem('theme', 'light');
+        }
+    </script>
+
+    <script>
         $(document).ready(function() {
             var userAgent = navigator.userAgent;
             var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
