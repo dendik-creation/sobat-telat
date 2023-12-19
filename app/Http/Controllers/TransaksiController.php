@@ -185,7 +185,7 @@ class TransaksiController extends Controller
             'Rentang Tanggal' => $request->has('start_date') && $request->has('end_date') ? $rentang_tanggal : null ,
             'Kelas' => $request->has('kelas_id') ? $kelas : null,
         ];
-        // Blade
+        // Blade View
         return view('admin.transaksi.export_terlambat', ['title' => 'Export Data Keterlambatan'], compact('terlambats', 'query'));
     }
 }
