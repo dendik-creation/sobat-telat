@@ -183,7 +183,6 @@ class TransaksiController extends Controller
         $query = [
             'NIS' => $request->nis_siswa,
             'Rentang Tanggal' => $request->has('start_date') && $request->has('end_date') ? $rentang_tanggal : null ,
-            'Tanggal Akhir' => $request->end_date,
             'Kelas' => $request->has('kelas_id') ? $kelas : null,
         ];
 
