@@ -8,26 +8,34 @@
                 close: true,
                 gravity: gravity,
                 position: position,
-                backgroundColor: status == 'failed' ? "#dc3545" : "#4fbe87",
+                backgroundColor: status == 'failed' ? "#E3735E" : "#4fbe87",
             }).showToast();
         }
     </script>
     {{-- Success --}}
     @if (Session::has('success'))
         <script>
-            toastResult("bottom", "right", "{{ Session::get('success') }}", "success")
+            if (window.innerWidth <= 768) {
+                toastResult("top", "center", "{{ Session::get('success') }}", "success")
+            } else {
+                toastResult("bottom", "right", "{{ Session::get('success') }}", "success")
+            }
         </script>
     @endif
 
     {{-- Failed/Errpr --}}
     @if (Session::has('failed'))
         <script>
-            toastResult("bottom", "right", "{{ Session::get('failed') }}", "failed")
+            if (window.innerWidth <= 768) {
+                toastResult("top", "center", "{{ Session::get('failed') }}", "failed")
+            } else {
+                toastResult("bottom", "right", "{{ Session::get('failed') }}", "failed")
+            }
         </script>
     @endif
 
 
-    {{-- Invalid Add New User --}}
+    {{-- Auto By Laravel Validate --}}
     @if ($errors->any())
         @foreach ($errors->all() as $item)
             <script>

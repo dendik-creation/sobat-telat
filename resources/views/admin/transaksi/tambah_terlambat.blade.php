@@ -66,6 +66,7 @@
                     <div class="col-12 mb-3 col-md-8 mb-md-0">
                         <div class="d-flex justify-content-center align-items-center">
                             <button value="with_print"
+                            id="with_print"
                                 class="btn btn-primary btn-lg w-100 d-flex justify-content-center align-items-center gap-3">
                                 <i class="bi bi-printer-fill mb-3"></i>
                                 <span class="fw-bold">Simpan & Cetak</span>
@@ -75,6 +76,7 @@
                     <div class="col-12 mb-3 col-md-4 mb-md-0">
                         <div class="d-flex justify-content-center align-items-center">
                             <button value="save_only"
+                            id="save_only"
                                 class="btn btn-success btn-lg w-100 d-flex justify-content-center align-items-center gap-3">
                                 <i class="bi bi-floppy-fill mb-3"></i>
                                 <span class="fw-bold">Hanya Simpan</span>
@@ -176,11 +178,19 @@
                         }, 500)
                     },
                     error: function(xhr, status, err) {
-                        toastResult("bottom", "right", xhr.responseJSON, "failed")
+                        if(window.innerWidth <= 768){
+                            toastResult("top", "center", xhr.responseJSON, "failed")
+                        }else{
+                            toastResult("bottom", "right", xhr.responseJSON, "failed")
+                        }
                     }
                 })
             } else {
-                toastResult("bottom", "right", "NIS Sudah Ditemukan", "failed")
+                if(window.innerWidth <= 768){
+                    toastResult("top", "center", "NIS Sudah Ditemukan", "failed")
+                }else{
+                    toastResult("bottom", "right", "NIS Sudah Ditemukan", "failed")
+                }
             }
         }
 
@@ -188,6 +198,13 @@
             event.preventDefault();
             let decision = event.submitter.value;
             $("#decision").val(decision);
+            $("#with_print").prop("disabled", true);
+            $("#save_only").prop("disabled", true);
+            if(decision == 'with_print'){
+                $("#with_print").html('Loading')
+            }else{
+                $("#save_only").html('Loading')
+            }
             setTimeout(() => {
                 $("#send_form").submit();
             }, 100)

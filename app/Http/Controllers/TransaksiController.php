@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Transaksi;
 use App\Models\User;
 use Carbon\Carbon;
@@ -167,7 +168,18 @@ class TransaksiController extends Controller
                 ->get();
         }
 
+        // Passing Query Data
+        if($request->has('kelas_id')){
+            $kelas = Kelas::where('id', $request->kelas_id)->first();
+            $query['kelas'] = $kelas;
+        }
+        $query = [
+            'NIS' => $request->nis_siswa,
+            'Tanggal Awal' => $request->start_date,
+            'Tanggal Akhir' => $request->end_date,
+            'Kelas' => $request->has('kelas_id') ? $kelas : null,
+        ];
         // Blade
-        return view('admin.transaksi.export_terlambat', ['title' => 'Export Data Keterlambatan'], compact('terlambats'));
+        return view('admin.transaksi.export_terlambat', ['title' => 'Export Data Keterlambatan'], compact('terlambats', 'query'));
     }
 }

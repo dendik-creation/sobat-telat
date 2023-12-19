@@ -21,18 +21,18 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // User::where('nis', 'gudangadmin')->update([
-        //     'nis' => 'admintelat',
-        //     'password' => bcrypt('telat12345')
+        // User::where('id', 1)->update([
+        //     'nis' => 'admin1',
+        //     'password' => bcrypt('12345'),
         // ]);
 
         // User::create([
-        //     'nis' => 'pak_adi_bk2',
-        //     'nama' => 'ADI YULIAN ARFIANTO, S.Pd',
-        //     'nisn' => '0',
+        //     'nis' => 'admin2',
+        //     'nama' => 'Sang Hyang Prabu Admin II',
+        //     'nisn' => 'admin',
         //     'gender' => 'L',
-        //     'kelas_id' => 41,
-        //     'password' => bcrypt('gurubk12345'),
+        //     'kelas_id' => 37,
+        //     'password' => bcrypt('12345'),
         // ]);
     }
 }

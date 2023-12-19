@@ -412,7 +412,11 @@
                 },
                 error: function(xhr, status, err) {
                     $("#confirm_current_pw").html('Konfirmasi')
-                    toastResult("bottom", "right", xhr.responseJSON, "failed")
+                    if(window.innerWidth <= 768){
+                        toastResult("top", "center", xhr.responseJSON, "failed")
+                    }else{
+                        toastResult("bottom", "right", xhr.responseJSON, "failed")
+                    }
                 }
             })
         }
@@ -432,7 +436,11 @@
                         url: `{{ url('/new-pw') }}`,
                         data: data,
                         success: function(data) {
-                            toastResult("bottom", "right", "Bersiap Logout", "success");
+                            if(window.innerWidth <= 768){
+                                toastResult("top", "center", "Bersiap Logout", "success");
+                            }else{
+                                toastResult("bottom", "right", "Bersiap Logout", "success");
+                            }
                             setTimeout(() => {
                                 $("#logout_form").submit()
                             }, 1000);
@@ -442,10 +450,18 @@
                         }
                     })
                 }else{
-                    toastResult("bottom", "right", "Password Konfirmasi Tidak Cocok", "failed")
+                    if(window.innerWidth <= 768){
+                        toastResult("top", "center", "Password Konfirmasi Tidak Cocok", "failed")
+                    }else{
+                        toastResult("bottom", "right", "Password Konfirmasi Tidak Cocok", "failed")
+                    }
                 }
             } else {
-                toastResult("bottom", "right", "Format Password Tidak Sesuai", "failed")
+                if(window.innerWidth <= 768){
+                    toastResult("top", "center", "Format Password Tidak Sesuai", "failed")
+                }else{
+                    toastResult("bottom", "right", "Format Password Tidak Sesuai", "failed")
+                }
             }
         }
     </script>
