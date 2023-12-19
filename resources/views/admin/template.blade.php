@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
 
-
-
     <link rel="shortcut icon" href="/assets/compiled/svg/clock-history.svg" type="image/x-icon">
     <link rel="stylesheet" href="/assets/compiled/css/app.css">
     <link rel="stylesheet" href="/assets/compiled/css/custom.css">

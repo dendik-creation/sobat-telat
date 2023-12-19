@@ -12,7 +12,7 @@
 
 <body class="bg-white">
     <div class="mt-4">
-        <h3 class="">Laporan Data Siswa Gudang Ajaib TJKT</h3>
+        <h3 class="">Laporan Data Siswa Gudang Sobat Telat</h3>
         <div class="d-flex justify-content-start align-items-center gap-2 mb-2">
             <div class="">Tanggal Dicetak :</div>
             <span>{{ date('d F Y - H : i') }}</span>

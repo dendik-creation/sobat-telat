@@ -1,23 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
-    <link rel="shortcut icon" href="/assets/compiled/svg/clock-history.svg" type="image/x-icon">
     <link rel="stylesheet" href="/assets/compiled/css/app.css">
-    <link rel="stylesheet" href="/assets/compiled/css/custom.css">
+    <link rel="shortcut icon" href="/assets/compiled/svg/clock-history.svg" type="image/x-icon">
     <style>
-        .maximum-width{
-            max-width: 44mm;
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+        * {
+            font-size: 12px;
+            font-family: 'JetBrains Mono', sans-serif;
+        }
+
+        .ticket {
+            /* Default 155px */
+            width: 200px;
+            max-width: 200px;
+        }
+        .signature-area{
+            /* Default 155px */
+            width: 200px;
+            height: 70px;
         }
     </style>
 </head>
-<body>
-    <div class="maximum-width bg-primary text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis est a at asperiores sunt assumenda veniam maiores, praesentium enim sed sapiente perferendis amet dolorum cumque rem quae dicta beatae ratione.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt alias quo dicta id officia sequi ab, quam rerum vitae magnam voluptas recusandae nam ipsam, autem, soluta perspiciatis blanditiis excepturi facere.
 
+<body class="bg-white">
+    <div class="ticket">
+        <center class="mb-1">
+            <img src="/assets/compiled/png/tjkt-icon.png" class="mb-3" style="width: 35px" alt="">
+            <i class="bi bi-clock-history fs-1 mx-3"></i>
+            <img src="/assets/compiled/png/smk2-icon.png" class="mb-3" style="width: 35px" alt="">
+        </center>
+        <div class="fw-bold fs-6 text-center mb-2">Surat Keterangan Terlambat <br> TJKT SMKN 2 Kudus</div>
+        <div class="mb-2 text-center">Menerangkan bahwa, siswa berikut</div>
+        <div class="mb-1 border border-2 border-end-0 border-start-0 py-2">
+            <div class="mb-1">
+                <div class="fw-semibold">NIS</div>
+                <div class="">{{ $terlambat->user->nis }}</div>
+            </div>
+            <div class="mb-1">
+                <div class="fw-semibold">Nama</div>
+                <div class="">{{ $terlambat->user->nama }}</div>
+            </div>
+            <div class="mb-1">
+                <div class="fw-semibold">Kelas</div>
+                <div class="">{{ $terlambat->user->kelas->kelas }}</div>
+            </div>
+            <div class="mb-1">
+                <div class="fw-semibold">Waktu Keterlambatan</div>
+                <div class="">{{ date_format(date_create($terlambat->waktu_terlambat), 'd M Y - H:i') }}</div>
+            </div>
+            <div class="mb-1">
+                <div class="fw-semibold">Alasan</div>
+                <div class="">{{ $terlambat->keterangan }}</div>
+            </div>
+        </div>
+        <div class="mb-3 text-center"><span class="fw-bold">Diperbolehkan <br></span> mengikuti pembelajaran mulai jam ke
+            <span class="fw-bold fs-5">{{ $terlambat->jam_ke }}</span>
+        </div>
+        <center>
+            <div class="">Mengetahui,</div>
+            <div class="">Guru BK</div>
+            {{-- Signature --}}
+            <div class="signature-area"></div>
+            <div class="">{{ auth()->user()->nis == 'admin1' ? 'RIAU MARINI, S.Pd' : 'ADI YULIAN ARFIANTO, S.Pd' }}</div>
+        </center>
     </div>
+
+    <script>
+        window.onload = () => window.print()
+    </script>
 </body>
+
 </html>

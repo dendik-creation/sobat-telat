@@ -88,14 +88,17 @@ class TransaksiController extends Controller
         $request->validate([
             'nis' => 'required',
             'keterangan' => 'required',
+            'jam_ke' => 'required',
             'decision' => 'required',
         ]);
+
         $today = Carbon::now();
         $siswa = User::where('nis', $request->nis)->first();
         if ($siswa) {
             $terlambat = Transaksi::create([
                 'user_id' => $siswa->id,
                 'kelas_id' => $siswa->kelas_id,
+                'jam_ke' => $request->jam_ke,
                 'keterangan' => $request->keterangan,
                 'waktu_terlambat' => $today,
             ]);
@@ -106,6 +109,7 @@ class TransaksiController extends Controller
             }
         }
     }
+
 
     public function print($id){
         $terlambat = Transaksi::with('user')->where('id', $id)->first();
@@ -173,10 +177,12 @@ class TransaksiController extends Controller
             $kelas = Kelas::where('id', $request->kelas_id)->first();
             $query['kelas'] = $kelas;
         }
+        if($request->has('start_date') && $request->has('end_date')){
+            $rentang_tanggal = date_format(date_create($request->start_date), 'd M Y') . " - " . date_format(date_create($request->end_date), 'd M Y');
+        }
         $query = [
             'NIS' => $request->nis_siswa,
-            'Tanggal Awal' => $request->start_date,
-            'Tanggal Akhir' => $request->end_date,
+            'Rentang Tanggal' => $request->has('start_date') && $request->has('end_date') ? $rentang_tanggal : null ,
             'Kelas' => $request->has('kelas_id') ? $kelas : null,
         ];
         // Blade

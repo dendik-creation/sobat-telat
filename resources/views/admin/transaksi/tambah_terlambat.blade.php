@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card d-none" id="search_result">
                         <div class="container px-3 py-3">
-                            <div class="fs-6 mb-2">2. &nbsp;Hasil Pencarian NIS Siswa</div>
+                            <div class="fs-6 mb-2">2. &nbsp;Hasil Pencarian NIS</div>
                             <div class="container">
                                 <div class="d-flex flex-column flex-md-row justify-content-start mb-1">
                                     <span class="fw-bold" style="width: 80px">NIS</span>
@@ -47,45 +47,63 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <form action="{{ url('send-terlambat') }}" method="POST" id="send_form">
-                @csrf
-                <input type="hidden" name="decision" id="decision">
-                <input type="hidden" name="nis" id="nis_send">
-                <div class="row">
+                <form action="{{ url('send-terlambat') }}" method="POST" id="send_form">
+                    @csrf
                     <div class="col-12">
-                        <div class="card d-none" id="keterangan_container">
+                        <div class="card" id="jam_pembelajaran">
                             <div class="container px-3 py-3">
-                                <div class="fs-6 mb-2">3. &nbsp;Alasan Siswa Terlambat</div>
-                                <textarea required name="keterangan" id="keterangan" cols="30" rows="3" class="form-control form-control-lg"></textarea>
+                                <div class="fs-6 mb-2">3. &nbsp;Siswa Masuk Jam Pembelajaran Ke</div>
+                                <select required name="jam_ke" id="jam_ke" class="form-control form-control-lg">
+                                    <option value="" selected disabled>Pilih Jam Pembelajaran</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row d-none" id="send_container">
-                    <div class="col-12 mb-3 col-md-8 mb-md-0">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button value="with_print"
-                            id="with_print"
-                                class="btn btn-primary btn-lg w-100 d-flex justify-content-center align-items-center gap-3">
-                                <i class="bi bi-printer-fill mb-3"></i>
-                                <span class="fw-bold">Simpan & Cetak</span>
-                            </button>
+                    <input type="hidden" name="decision" id="decision">
+                    <input type="hidden" name="nis" id="nis_send">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card d-none" id="keterangan_container">
+                                <div class="container px-3 py-3">
+                                    <div class="fs-6 mb-2">4. &nbsp;Alasan Siswa Terlambat</div>
+                                    <textarea required name="keterangan" id="keterangan" cols="30" rows="3" class="form-control form-control-lg"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-12 mb-3 col-md-4 mb-md-0">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button value="save_only"
-                            id="save_only"
-                                class="btn btn-success btn-lg w-100 d-flex justify-content-center align-items-center gap-3">
-                                <i class="bi bi-floppy-fill mb-3"></i>
-                                <span class="fw-bold">Hanya Simpan</span>
-                            </button>
+                    <div class="row d-none" id="send_container">
+                        <div class="col-12 mb-3 col-md-8 mb-md-0">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button value="with_print" id="with_print"
+                                    class="btn btn-primary btn-lg w-100 d-flex justify-content-center align-items-center gap-3">
+                                    <i class="bi bi-printer-fill mb-3"></i>
+                                    <span class="fw-bold">Simpan & Cetak</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3 col-md-4 mb-md-0">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button value="save_only" id="save_only"
+                                    class="btn btn-success btn-lg w-100 d-flex justify-content-center align-items-center gap-3">
+                                    <i class="bi bi-floppy-fill mb-3"></i>
+                                    <span class="fw-bold">Hanya Simpan</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
     </section>
 
     {{-- AnimeJs CDN --}}
@@ -96,7 +114,9 @@
     <script>
         let first = true;
         anime({
-            targets: ['#nis_search', '#search_result', '#keterangan_container', '#send_container'],
+            targets: ['#nis_search', '#search_result', '#jam_pembelajaran', '#keterangan_container',
+                '#send_container'
+            ],
             scaleY: 0,
             duration: 0,
         });
@@ -128,18 +148,25 @@
                     delay: 0
                 });
                 anime({
-                    targets: '#keterangan_container',
+                    targets: '#jam_pembelajaran',
                     scaleY: 1,
                     duration: 500,
                     easing: 'easeInOutExpo',
                     delay: 150
                 });
                 anime({
-                    targets: '#send_container',
+                    targets: '#keterangan_container',
                     scaleY: 1,
                     duration: 500,
                     easing: 'easeInOutExpo',
                     delay: 300
+                });
+                anime({
+                    targets: '#send_container',
+                    scaleY: 1,
+                    duration: 500,
+                    easing: 'easeInOutExpo',
+                    delay: 450
                 });
             }, first ? 250 : 500)
         }
@@ -178,17 +205,17 @@
                         }, 500)
                     },
                     error: function(xhr, status, err) {
-                        if(window.innerWidth <= 768){
+                        if (window.innerWidth <= 768) {
                             toastResult("top", "center", xhr.responseJSON, "failed")
-                        }else{
+                        } else {
                             toastResult("bottom", "right", xhr.responseJSON, "failed")
                         }
                     }
                 })
             } else {
-                if(window.innerWidth <= 768){
+                if (window.innerWidth <= 768) {
                     toastResult("top", "center", "NIS Sudah Ditemukan", "failed")
-                }else{
+                } else {
                     toastResult("bottom", "right", "NIS Sudah Ditemukan", "failed")
                 }
             }
@@ -200,9 +227,9 @@
             $("#decision").val(decision);
             $("#with_print").prop("disabled", true);
             $("#save_only").prop("disabled", true);
-            if(decision == 'with_print'){
+            if (decision == 'with_print') {
                 $("#with_print").html('Loading')
-            }else{
+            } else {
                 $("#save_only").html('Loading')
             }
             setTimeout(() => {

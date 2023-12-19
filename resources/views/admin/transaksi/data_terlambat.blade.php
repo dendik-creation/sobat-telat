@@ -37,6 +37,7 @@
                                     <th>NIS</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
+                                    <th>Masuk Jam Ke</th>
                                     <th>Alasan</th>
                                     <th>Waktu Terlambat</th>
                                     <th>Action</th>
@@ -49,6 +50,13 @@
                                         <td>{{ $item->user->nis }}</td>
                                         <td>{{ $item->user->nama }}</td>
                                         <td>{{ $item->user->kelas->kelas }}</td>
+                                        <td>
+                                            @if ($item->jam_ke)
+                                                {{ $item->jam_ke }}
+                                                @else
+                                                -
+                                            @endif
+                                        </td>
                                         <td>{{ $item->keterangan }}</td>
                                         <td>{{ date_format(date_create($item->waktu_terlambat), 'd M Y | H:i') }}</td>
                                         <td>

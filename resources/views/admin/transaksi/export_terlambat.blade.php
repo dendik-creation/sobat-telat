@@ -22,20 +22,16 @@
             <div class="">Total Keterlambatan :</div>
             <span>{{ $terlambats->count() }} Kali</span>
         </div>
-        @if ($query)
-            <div class="d-flex justify-content-start flex-column align-items-start gap-2 mb-2">
-                <div class="mb-1">Filter yang digunakan</div>
+        @if (!empty(array_filter($query)))
+            <div class="d-flex justify-content-start  align-items-start gap-2 mb-2">
+                <div class="mb-1">Filter Aktif</div>
                 <div class="d-flex justify-content-start align-items-center gap-2">
                     @foreach ($query as $key => $item)
                         @if ($item != null)
                             @if ($key == 'Kelas')
                                 <span class="badge bg-light-success">{{ $key }} : {{ $item->kelas }}</span>
                             @else
-                                @if ($key == 'Tanggal Awal' || $key == 'Tanggal Akhir')
-                                <span class="badge bg-light-success">{{ $key }} : {{ date_format(date_create($item), 'd M Y') }}</span>
-                                @else
                                 <span class="badge bg-light-success">{{ $key }} : {{ $item }}</span>
-                                @endif
                             @endif
                         @endif
                     @endforeach
@@ -43,11 +39,12 @@
             </div>
         @endif
         <table class="table table-striped">
-            <thead class="bg-primary">
+            <thead class="bg-success">
                 <th class="text-white">No</th>
                 <th class="text-white">NIS</th>
                 <th class="text-white">Nama</th>
                 <th class="text-white">Kelas</th>
+                <th class="text-white">Masuk Jam Ke</th>
                 <th class="text-white">Alasan</th>
                 <th class="text-white">Waktu Terlambat</th>
             </thead>
@@ -58,6 +55,13 @@
                         <td>{{ $item->user->nis }}</td>
                         <td>{{ $item->user->nama }}</td>
                         <td>{{ $item->user->kelas->kelas }}</td>
+                        <td>
+                            @if ($item->jam_ke)
+                                {{ $item->jam_ke }}
+                            @else
+                                -
+                            @endif
+                        </td>
                         <td>
                             @if ($item->keterangan)
                                 {{ $item->keterangan }}
