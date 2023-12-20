@@ -178,12 +178,14 @@ class TransaksiController extends Controller
             $kelas = Kelas::where('id', $request->kelas_id)->first();
             $query['kelas'] = $kelas;
         }
-        if($request->has('start_date') && $request->has('end_date')){
+        if($request->has('start_date') && $request->has('end_date') && ($request->start_date != "" && $request->end_date != "")){
             $rentang_tanggal = date_format(date_create($request->start_date), 'd M Y') . " - " . date_format(date_create($request->end_date), 'd M Y');
+        }else{
+            $rentang_tanggal = null;
         }
         $query = [
             'NIS' => $request->nis_siswa,
-            'Rentang Tanggal' => $request->has('start_date') && $request->has('end_date') ? $rentang_tanggal : null ,
+            'Rentang Tanggal' => $rentang_tanggal ,
             'Kelas' => $request->has('kelas_id') ? $kelas : null,
         ];
 

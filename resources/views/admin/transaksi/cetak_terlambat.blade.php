@@ -63,7 +63,7 @@
         </div>
         <center>
             <div class="">Mengetahui,</div>
-            <div class="">Guru BK</div>
+            <div class="">{{ auth()->user()->id == 1 ? 'Admin Sobat Telat' : "Guru BK" }}</div>
             {{-- Signature --}}
             <div class="signature-area"></div>
             <div class="">{{ auth()->user()->nama }}</div>

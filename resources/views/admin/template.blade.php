@@ -70,10 +70,10 @@
 
                         {{-- Fixed --}}
                         <li class="sidebar-item position-fixed" style="bottom: 1em; cursor : default;">
-                            <div class="sidebar-link">
-                                <i class="bi bi-phone" id="device_icon"></i>
-                                <span id="device_type">Mobile Mode</span>
-                            </div>
+                            <a href="https://github.com/dendik-creation" target="_blank" class="sidebar-link">
+                                <i class="bi bi-github"></i>
+                                <span>dendik-creation</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -331,22 +331,6 @@
         if(localStorage.getItem('theme') == 'dark'){
             localStorage.setItem('theme', 'light');
         }
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            var userAgent = navigator.userAgent;
-            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-            if (isMobile) {
-                $("#device_icon").removeClass("bi-laptop");
-                $("#device_icon").addClass("bi-phone");
-                $("#device_type").html('Mobile');
-            } else {
-                $("#device_icon").removeClass("bi-phone");
-                $("#device_icon").addClass("bi-laptop");
-                $("#device_type").html('Desktop');
-            }
-        })
     </script>
 
     <script>

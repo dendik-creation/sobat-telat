@@ -2,7 +2,24 @@
 @section('content_admin')
     <link rel="stylesheet" href="/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="/assets/compiled/css/table-datatable-jquery.css">
-
+    <style>
+        #export_btn:disabled::before{
+            position: absolute;
+            content: '';
+            width : 150%;
+            height: 4px;
+            background-color: #1c1c1c;
+            rotate: -14deg;
+        }
+        #export_btn:disabled::after{
+            position: absolute;
+            content: '';
+            width : 150%;
+            height: 4px;
+            background-color: #1c1c1c;
+            rotate: -30deg;
+        }
+    </style>
     <div class="row">
         <div class="col-12">
             @include('alert')
@@ -17,7 +34,8 @@
                             <small class="d-none d-md-block">Bersihkan Filter</small>
                         </button>
                         <button id="export_btn" onclick="readyExport()"
-                            class="btn btn-warning d-flex justify-content-center align-items-center">
+                        @disabled($terlambats->count() == 0)
+                            class="btn position-relative overflow-hidden btn-warning d-flex justify-content-center align-items-center">
                             <i class="bi bi-file-earmark-arrow-down-fill mb-2 me-md-2"></i>
                             <small class="d-none d-md-block">Export</small>
                         </button>
@@ -106,7 +124,7 @@
                                     <div class="accordion-body">
                                         <div class="container">
                                             <select name="kelas_id" id="kelas_id" class="form-control form-control-lg">
-                                                {{-- Optional --}}
+                                                {{-- Ajax Kelas Request DOM --}}
                                             </select>
                                         </div>
                                     </div>
