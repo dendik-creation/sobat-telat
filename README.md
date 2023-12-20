@@ -1,8 +1,7 @@
 
 # Laravel Sobat Telat
 
-It is a late student attendance application based on a Laravel web application and uses a MySQL database
-
+Sobat Telat is a late student attendance web application which can manage student tardiness data. The features available include managing student data and delays and can be printed using a thermal printer
 
 ## Authors
 
@@ -11,7 +10,7 @@ It is a late student attendance application based on a Laravel web application a
 
 ## Tech Stack
 
-- Frontend : Laravel Blade, Jquery, Bootstrap
+- Frontend : Laravel Blade, Jquery, Bootstrap, Mazer Dashboard
 * Backend : Laravel
 
 ## Installation
