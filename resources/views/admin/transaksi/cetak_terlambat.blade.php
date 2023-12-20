@@ -36,7 +36,7 @@
         </center>
         <div class="fw-bold fs-5 text-center mb-2">Surat Keterangan <span class="fs-5 text-uppercase" style="letter-spacing: 8px">Terlambat</span> <br> TJKT SMKN 2 Kudus</div>
         <div class="mb-2 text-center">Menerangkan bahwa, siswa berikut</div>
-        <div class="mb-1 border border-2 border-end-0 border-start-0 py-2" style="border-style: dashed !important; border-right : none !important; border-left : none !important">
+        <div class="mb-1 text-center border border-2 border-end-0 border-start-0 py-2" style="border-style: dashed !important; border-right : none !important; border-left : none !important">
             <div class="mb-1">
                 <div class="fw-semibold">NIS</div>
                 <div class="">{{ $terlambat->user->nis }}</div>
