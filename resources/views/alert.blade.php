@@ -8,7 +8,7 @@
                 close: true,
                 gravity: gravity,
                 position: position,
-                backgroundColor: status == 'failed' ? "#E3735E" : "#4fbe87",
+                backgroundColor: status == 'failed' ? "#AA4A44" : "#4fbe87",
             }).showToast();
         }
     </script>

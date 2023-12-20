@@ -1,5 +1,15 @@
 @extends('admin.template')
 @section('content_admin')
+
+    {{-- Redirect Dengan Cetak Session --}}
+    @if (Session::has('targetUrl'))
+        <a href="{{ Session::get('targetUrl') }}" id="target_url" target="_blank"></a>
+        <script>
+            let a = document.getElementById('target_url').click();
+        </script>
+    @endif
+
+
     <section class="row">
         @include('alert')
         <div class="col-12">

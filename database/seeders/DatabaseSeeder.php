@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // User::where('id', 1)->update([
-        //     'nis' => 'admin1',
+        // User::whereBetween('id', [434, 435])->update([
+        //     // 'nis' => 'admin1',
         //     'password' => bcrypt('12345'),
         // ]);
 

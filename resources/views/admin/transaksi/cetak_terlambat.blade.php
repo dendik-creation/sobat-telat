@@ -32,13 +32,11 @@
 <body class="bg-white">
     <div class="ticket">
         <center class="mb-1">
-            <img src="/assets/compiled/png/tjkt-icon.png" class="mb-3" style="width: 35px" alt="">
             <i class="bi bi-clock-history fs-1 mx-3"></i>
-            <img src="/assets/compiled/png/smk2-icon.png" class="mb-3" style="width: 35px" alt="">
         </center>
-        <div class="fw-bold fs-6 text-center mb-2">Surat Keterangan Terlambat <br> TJKT SMKN 2 Kudus</div>
+        <div class="fw-bold fs-5 text-center mb-2">Surat Keterangan <span class="fs-5 text-uppercase" style="letter-spacing: 8px">Terlambat</span> <br> TJKT SMKN 2 Kudus</div>
         <div class="mb-2 text-center">Menerangkan bahwa, siswa berikut</div>
-        <div class="mb-1 border border-2 border-end-0 border-start-0 py-2">
+        <div class="mb-1 border border-2 border-end-0 border-start-0 py-2" style="border-style: dashed !important; border-right : none !important; border-left : none !important">
             <div class="mb-1">
                 <div class="fw-semibold">NIS</div>
                 <div class="">{{ $terlambat->user->nis }}</div>
@@ -68,7 +66,7 @@
             <div class="">Guru BK</div>
             {{-- Signature --}}
             <div class="signature-area"></div>
-            <div class="">{{ auth()->user()->nis == 'admin1' ? 'RIAU MARINI, S.Pd' : 'ADI YULIAN ARFIANTO, S.Pd' }}</div>
+            <div class="">{{ auth()->user()->nama }}</div>
         </center>
     </div>
 

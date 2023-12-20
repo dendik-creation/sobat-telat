@@ -103,7 +103,8 @@ class TransaksiController extends Controller
                 'waktu_terlambat' => $today,
             ]);
             if($request->decision == 'with_print'){
-                return redirect('cetak-terlambat/' . $terlambat->id);
+                $targetUrl = "cetak-terlambat/". $terlambat->id;
+                return back()->with('targetUrl', $targetUrl );
             }else{
                 return redirect('/')->with('success', 'Data Terlambat Berhasil Dikirim');
             }
