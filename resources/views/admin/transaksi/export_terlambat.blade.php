@@ -22,11 +22,11 @@
             <div class="">Total Keterlambatan :</div>
             <span>{{ $terlambats->count() }} Kali</span>
         </div>
-        @if (!empty(array_filter($query)))
+        @if (!empty(array_filter($filter_result)))
             <div class="d-flex justify-content-start  align-items-start gap-2 mb-2">
                 <div class="mb-1">Filter Aktif</div>
                 <div class="d-flex justify-content-start align-items-center gap-2">
-                    @foreach ($query as $key => $item)
+                    @foreach ($filter_result as $key => $item)
                         @if ($item != null)
                             @if ($key == 'Kelas')
                                 <span class="badge bg-light-success">{{ $key }} : {{ $item->kelas }}</span>

@@ -78,10 +78,10 @@
                                         <td>{{ $item->keterangan }}</td>
                                         <td>{{ date_format(date_create($item->waktu_terlambat), 'd M Y | H:i') }}</td>
                                         <td>
-                                            <a href="{{ url('cetak-terlambat/' . $item->id) }}" target="_blank"
+                                            <button onclick="window.open('{{ url('cetak-terlambat/'. $item->id) }}', '_blank')"
                                                 class="btn btn-light-warning">
                                                 <i class="bi bi-printer-fill mb-2"></i>
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -183,6 +183,28 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                        aria-controls="flush-collapseFour">
+                                        <div
+                                            class="fs-6 fw-bold d-flex w-100 justify-content-start gap-2 align-items-center">
+                                            <div>Berdasarkan Alasan Terlambat</div>
+                                            <i class="bi bi-funnel-fill mb-2 d-none" id="active_filter_keterangan"></i>
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <div class="container">
+                                            <input type="text" placeholder="Kata kunci" name="keterangan" id="keterangan"
+                                                class="form-control form-control-lg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -233,7 +255,7 @@
             let params = new URLSearchParams(window.location.search);
             let select = document.getElementById('kelas_id');
             if (params.get('kelas_id') || params.get('start_date') || params.get('end_date') || params.get(
-                    'nis_siswa')) {
+                    'nis_siswa') || params.get('keterangan')) {
                 $("#clear_filter").removeClass('d-none');
             }
         }
@@ -243,6 +265,7 @@
             kelasReady();
             tanggalReady();
             nisReady();
+            keteranganReady();
         }
 
         function kelasReady() {
@@ -290,6 +313,14 @@
             if (params.get('nis_siswa')) {
                 $("#active_filter_siswa").removeClass('d-none');
                 $("#nis_siswa").val(params.get('nis_siswa'))
+            }
+        }
+
+        function keteranganReady() {
+            let params = new URLSearchParams(window.location.search);
+            if (params.get('keterangan')) {
+                $("#active_filter_keterangan").removeClass('d-none');
+                $("#keterangan").val(params.get('keterangan'))
             }
         }
 
