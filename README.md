@@ -23,6 +23,9 @@ composer install
 ```
 3. Create database named "laravel" and import database in database folder
 4. Rename .env.example to .env
+```bash
+cp .env.example .env
+```
 5. Generate random key
 ```bash
 php artisan key:generate
